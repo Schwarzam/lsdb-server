@@ -8,7 +8,7 @@ mod parser {
     use super::*;
 
     #[tokio::test]
-    async fn test_read_file() {
+    async fn process_and_return_parquet_file() {
         let file_path = paths::get_testdata_path("Npix=754.parquet");
         let mut params = HashMap::new();
 
@@ -19,7 +19,11 @@ mod parser {
             file_path.to_str().unwrap(), 
             &params
         ).await;
-        // Add assertions here to verify the result
+
+        // Add assertions to verify the result
+        assert!(result.is_ok(), "The function should return Ok");
+        let _data = result.unwrap();
+        // Additional assertions based on expected data
     }
     
 
